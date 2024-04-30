@@ -13,6 +13,7 @@ class Client(SqlAlchemyBase):
     surname = sqlalchemy.Column(sqlalchemy.String, nullable=True)
     name = sqlalchemy.Column(sqlalchemy.String, nullable=True)
     birth_date = sqlalchemy.Column(sqlalchemy.Date, nullable=True)
+    gender = sqlalchemy.Column(sqlalchemy.String, default='N')
     email = sqlalchemy.Column(sqlalchemy.String, index=True, unique=True, nullable=True)
     hashed_password = sqlalchemy.Column(sqlalchemy.String, nullable=True)
     delivery_address = sqlalchemy.Column(sqlalchemy.String, nullable=True)
