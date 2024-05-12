@@ -3,6 +3,7 @@ import sqlalchemy
 from sqlalchemy import orm
 
 from scripts.db_session import SqlAlchemyBase
+import scripts.models.client as clients
 
 
 class Order(SqlAlchemyBase):
@@ -16,4 +17,4 @@ class Order(SqlAlchemyBase):
     payment_method = sqlalchemy.Column(sqlalchemy.String, default='debit_card')
     total_price = sqlalchemy.Column(sqlalchemy.Float)
 
-    customer = orm.relationship('Client')
+    customer = orm.relationship(clients.Client)

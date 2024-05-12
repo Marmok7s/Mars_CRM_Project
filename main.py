@@ -2,6 +2,8 @@ from flask import Flask, render_template, redirect
 from scripts import db_session
 from scripts.models.registration_form import RegisterForm
 from scripts.models.users import User
+from scripts.getter import get_data
+
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'yandexlyceum_secret_key'
@@ -9,7 +11,7 @@ app.config['SECRET_KEY'] = 'yandexlyceum_secret_key'
 
 @app.route('/')
 def starting_page():
-    return render_template('side_bar.html')
+    return render_template('base.html')
 
 
 @app.route('/register', methods=['GET', 'POST'])
@@ -33,10 +35,20 @@ def reqister():
     return render_template('register.html', title='Registration', form=form)
 
 
-def main():
-    db_session.global_init("C:/Users/User/PycharmProjects/db/mars_workers.db")
+@app.route('/a/<page>')
+def page(page):
+    return render_template('items.html', title=page, items=get_data("db/mars_workers.db", 'items'))
 
-    app.run()
+
+@app.route('/a/<page>/<part>')
+def part_page(page, part):
+    return render_template('base.html', title=part)
+
+
+def main():
+    db_session.global_init("db/mars_workers.db")
+
+    app.run(port=8081, host='127.0.0.1')
 
 
 if __name__ == '__main__':

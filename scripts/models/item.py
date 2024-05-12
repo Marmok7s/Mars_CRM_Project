@@ -17,3 +17,4 @@ class Item(SqlAlchemyBase):
     size = sqlalchemy.Column(sqlalchemy.String, nullable=True)
     valuation = sqlalchemy.Column(sqlalchemy.Float, default=0.0)
     in_stock = sqlalchemy.Column(sqlalchemy.Integer, nullable=True, default=0)
+
